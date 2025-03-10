@@ -1,0 +1,92 @@
+/* Estilo global */
+body {
+    background-color: #121212; /* Fundo escuro */
+    color: white; /* Texto claro */
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #1c1c1c; /* Cor escura para a barra de navegação */
+}
+
+.navbar-brand {
+    color: #e60000 !important; /* Vermelho para o logo */
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e60000 !important; /* Vermelho quando passar o mouse */
+}
+
+.navbar-toggler-icon {
+    background-color: #e60000; /* Cor vermelha para o ícone de menu */
+}
+
+.card {
+    background-color: #2a2a2a; /* Cor escura para os cards */
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Efeito de hover para zoom nos cards */
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* Imagem do card com proporção correta */
+}
+
+.card-body {
+    background-color: #333; /* Cor de fundo escura para a área do card */
+}
+
+.card-title {
+    color: #e60000; /* Vermelho para o título do produto */
+}
+
+.card-text {
+    color: #ccc; /* Texto cinza claro */
+}
+
+.btn-primary, .btn-danger {
+    background-color: #e60000; /* Botões vermelhos */
+    border: none;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    background-color: #b30000; /* Vermelho mais escuro no hover */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h2 {
+    color: #e60000; /* Títulos em vermelho */
+    font-size: 2.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 150px; /* Ajusta a altura da imagem em dispositivos móveis */
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 180px;
+    }
+}

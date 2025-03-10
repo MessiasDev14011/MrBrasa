@@ -1,0 +1,153 @@
+html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <!-- Link para o CSS do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para o CSS customizado -->
+    <link href="styles/productdetails.css" rel="stylesheet">
+    <!-- Link para Font Awesome (para ícones) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <input class="form-control" type="search" placeholder="Buscar produtos" aria-label="Search">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html" id="cart-link">
+                            <i class="fas fa-shopping-cart"></i> Carrinho (0)
+                        </a>
+                    </li>
+                    <li class="nav-item" id="account-info">
+                        <a class="nav-link" href="#" id="login-link">Fazer Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Detalhes do Produto -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Carrossel de Imagens -->
+            <div class="col-md-6">
+                <div id="productImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="carouselImages">
+                        <!-- As imagens serão alteradas dinamicamente com o JavaScript -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Descrição do Produto e Ações -->
+            <div class="col-md-6">
+                <h2 class="product-title" id="productTitle">Produto Exemplo</h2>
+                <p class="product-price" id="productPrice">R$ 149,90</p>
+                <p class="product-description">
+                    Descrição detalhada do produto. Aqui o cliente poderá ler todas as informações, características e especificações do produto, como tamanho, material, garantias, etc.
+                </p>
+
+                <div class="mb-3">
+                    <label for="modelSelect" class="form-label">Selecione o Modelo</label>
+                    <select class="form-select" id="modelSelect" onchange="updateProductDetails()">
+                        <option value="1" selected>Modelo 1</option>
+                        <option value="2">Modelo 2</option>
+                        <option value="3">Modelo 3</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="zipCode" class="form-label">Informe seu CEP</label>
+                    <input type="text" class="form-control" id="zipCode" placeholder="CEP" maxlength="9">
+                    <button type="button" class="btn btn-secondary mt-2" onclick="calculateShipping()">Calcular Frete</button>
+                </div>
+
+                <div class="mb-3">
+                    <span id="shippingCost"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" onclick="addToCart()">Adicionar ao Carrinho</button>
+                    <button class="btn btn-danger" onclick="checkout()">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Produtos Parecidos com Navegação Horizontal -->
+        <div class="mt-5">
+            <h3 class="text-center">Produtos Parecidos</h3>
+            <div class="product-similar-container w-100">
+                <div class="product-similar-slider" id="similarProductsSlider">
+                    <!-- Produtos similares serão inseridos aqui -->
+                    <div class="product-card">
+                        <img src="sources/faca1.jpeg" alt="Produto Similar 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Produto Similar 1</h5>
+                            <p class="product-price">R$ 139,90</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="sources/faca2.jpeg" alt="Produto Similar 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Produto Similar 2</h5>
+                            <p class="product-price">R$ 129,90</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="sources/faca4.jpeg" alt="Produto Similar 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Produto Similar 3</h5>
+                            <p class="product-price">R$ 159,90</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="sources/faca5.jpeg" alt="Produto Similar 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Produto Similar 4</h5>
+                            <p class="product-price">R$ 169,90</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Botão Voltar -->
+        <div class="text-center mt-5">
+            <a href="index.html" class="btn btn-outline-light">Voltar para a Página Inicial</a>
+        </div>
+    </div>
+
+    <!-- Link para os scripts JS do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Link para o script JS customizado -->
+    <script src="scripts/productdetails.js"></script>
+
+</body>
+</html>

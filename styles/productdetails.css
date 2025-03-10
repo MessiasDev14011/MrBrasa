@@ -1,0 +1,250 @@
+/* Estilos para o carrossel de produtos semelhantes */
+.product-similar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-similar-slider {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.btn-arrow-left, .btn-arrow-right {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+/* Tema Escuro */
+body.dark-theme {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #212121;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #bbb;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navbar .navbar-brand {
+    color: #ff4d4d;
+}
+
+.navbar-toggler-icon {
+    background-color: #ff4d4d;
+}
+
+/* Estilos para o Produto */
+.product-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4d4d;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+.product-description a {
+    color: #ff4d4d;
+}
+
+/* Carrossel de Imagens */
+.carousel-inner img {
+    width: 100%;
+    max-height: 500px; /* Ajustado para imagem maior */
+    object-fit: contain; /* Garantindo que a imagem se ajuste bem sem distorcer */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #ff4d4d;
+}
+
+/* Seleção de Modelo */
+#modelSelect {
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#zipCode {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: #ff4d4d;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #ff3333;
+}
+
+.btn-danger {
+    background-color: #ff4d4d;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #ff3333;
+}
+
+.btn-outline-light {
+    color: #fff;
+    border: 1px solid #ff4d4d;
+}
+
+.btn-outline-light:hover {
+    background-color: #ff4d4d;
+}
+
+/* Layout Responsivo */
+@media (max-width: 768px) {
+    .product-description {
+        font-size: 1rem;
+    }
+
+    /* Ajuste das imagens no carrossel para telas menores */
+    .carousel-inner img {
+        max-height: 400px;
+    }
+}
+
+
+.btn-arrow-left:hover, .btn-arrow-right:hover {
+    background-color: #444;
+}
+/* Estilos gerais */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.product-similar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-similar-slider {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.btn-arrow-left, .btn-arrow-right {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-arrow-left:hover, .btn-arrow-right:hover {
+    background-color: #444;
+}
+
+/* Estilos do Carrossel */
+#productImagesCarousel {
+    max-height: 500px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 400px; /* Controlando o tamanho da imagem do carrossel */
+    object-fit: cover;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+    #productImagesCarousel {
+        max-height: 300px;
+    }
+
+    .carousel-inner img {
+        height: 250px; /* Imagem mais destacada em dispositivos móveis */
+    }
+
+    .product-title {
+        font-size: 1.8rem;
+    }
+
+    .product-description {
+        font-size: 0.9rem;
+    }
+
+    .product-price {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ajustes de navegação no carrossel de produtos */
+@media (max-width: 768px) {
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}

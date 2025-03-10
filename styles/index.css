@@ -1,0 +1,121 @@
+body.dark-theme {
+    background-color: #121212;
+    color: #fff;
+}
+.carouselContainer{
+    height: 30%;
+    background-color: white;
+}
+.img-200-200{
+    width: 100%;
+    height: 500px;
+}
+.ProductCardImg{
+    width: 100%;
+    height: 350px;
+}
+/* Navbar */
+.navbar {
+    background-color: #212121;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #bbb;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navbar .navbar-brand {
+    color: #ff4d4d;
+}
+
+.navbar-toggler-icon {
+    background-color: #ff4d4d;
+}
+
+/* Cards de Produtos */
+.product-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card img {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    color: #ff4d4d;
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff4d4d;
+}
+
+.product-actions .btn {
+    width: 48%;
+}
+
+/* Estilo para o botão "Ver Todos os Produtos" */
+.btn-danger {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #ff3333;
+    text-decoration: none;
+}
+
+/* Responsividade para os Cards */
+@media (max-width: 768px) {
+    .product-card {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-card {
+        margin-bottom: 20px;
+    }
+
+    .product-actions .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
