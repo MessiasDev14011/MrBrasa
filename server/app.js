@@ -1,64 +1,87 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-
-// Criando a instância do Express
 const app = express();
 app.use(express.json());
 
-// Configurando o CORS
+// Configuração do CORS
 app.use(cors());
-
 
 // Configuração do MySQL
 const db = mysql.createConnection({
-  host: 'localhost',        // Endereço do servidor MySQL (no seu caso, provavelmente "localhost")
-  user: 'root',      // Substitua pelo seu usuário MySQL
-  password: 'Migue14011@',    // Substitua pela sua senha do MySQL
-  database: 'loja_online'          // Nome do banco de dados que você está usando
+  host: 'localhost',
+  user: 'root',  // Substitua pelo seu usuário MySQL
+  password: 'Migue14011@', // Substitua pela sua senha do MySQL
+  database: 'loja_online'      // Nome do banco de dados
 });
 
-// Conectar ao banco de dados MySQL
+// Conectar ao banco de dados
 db.connect((err) => {
   if (err) {
-    console.error('Erro ao conectar no banco de dados:', err);
+    console.error('Erro ao conectar ao banco de dados:', err);
     return;
   }
   console.log('Conectado ao banco de dados MySQL');
 });
 
-// Rota para buscar os produtos 
+// Rota para buscar produtos com estoque maior que zero, modelos e imagens
 app.get('/produtos', (req, res) => {
-  const query = 'SELECT * FROM produtos where quantidade_estoque > 0';
+  const query = `
+    SELECT p.idPRODUTOS AS produto_id, p.nome, p.descricao AS produto_descricao, p.preco, p.quantidade_estoque, p.id_categoria,
+       m.id AS modelo_id, m.nome_modelo, 
+       i.url_image
+FROM produtos p
+LEFT JOIN modelos m ON p.idPRODUTOS = m.id_produto
+LEFT JOIN imagens_modelo i ON m.id = i.id_modelo
+WHERE p.quantidade_estoque > 0
+ORDER BY p.idPRODUTOS, m.id, i.id;
+  `;
 
   db.query(query, (err, results) => {
     if (err) {
-      console.error('Erro ao buscar produtos:', err);
-      res.status(500).send('Erro ao buscar produtos');
+      console.error('Erro ao buscar produtos, modelos e imagens:', err);
+      res.status(500).send('Erro ao buscar dados');
       return;
     }
 
-    res.json(results);  // Retorna os produtos como JSON
-  });
-});
-
-app.get('/produtos/imagens', (req, res) => {
-    const query = 'SELECT * FROM imagens_produto';
-  
-    db.query(query, (err, results) => {
-      if (err) {
-        console.error('Erro ao buscar imagens:', err);
-        res.status(500).send('Erro ao buscar imagens');
-        return;
+    // Organizando os dados no formato adequado
+    const produtosComModelos = [];
+    results.forEach(row => {
+      // Encontrar ou criar um produto no array
+      let produto = produtosComModelos.find(p => p.id === row.produto_id);
+      if (!produto) {
+        produto = {
+          id: row.produto_id,
+          nome: row.nome,
+          descricao: row.produto_descricao,
+          preco: row.preco,
+          estoque: row.estoque,
+          categoria: row.id_categoria,
+          modelos: []
+        };
+        produtosComModelos.push(produto);
       }
-  
-      res.json(results);  // Retorna os produtos como JSON
-    });
-  });
 
-// Rota para testar a API
-app.get('/', (req, res) => {
-  res.send('API funcionando!');
+      // Encontrar ou criar um modelo dentro do produto
+      let modelo = produto.modelos.find(m => m.id === row.modelo_id);
+      if (!modelo) {
+        modelo = {
+          id: row.modelo_id,
+          nome_modelo: row.nome_modelo,
+          descricao: row.modelo_descricao,
+          imagens: []
+        };
+        produto.modelos.push(modelo);
+      }
+
+      // Adicionar a imagem ao modelo
+      if (row.url_image) {
+        modelo.imagens.push(row.url_image);
+      }
+    });
+
+    res.json(produtosComModelos);  // Enviar os produtos com modelos e imagens
+  });
 });
 
 // Definindo a porta em que o servidor vai rodar
